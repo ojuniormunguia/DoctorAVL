@@ -179,6 +179,7 @@
             BackColor = Color.White;
             ClientSize = new Size(1062, 673);
             Controls.Add(tableLayoutPanel2);
+            MinimumSize = new Size(1080, 720);
             Name = "IniciarSesion";
             Text = "Form1";
             panel1.ResumeLayout(false);
