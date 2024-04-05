@@ -9,7 +9,6 @@ namespace DoctorAVL
         public IniciarSesion()
         {
             InitializeComponent();
-            this.FormClosing += TFormClosing;
         }
 
         //Paciente
@@ -37,15 +36,11 @@ namespace DoctorAVL
                         break;
 
                     case "doctor":
-                        adminView = new AdminView(usuario, permisos);
-                        this.Hide();
-                        adminView.Show();
+
                         break;
 
                     case "digitador":
-                        adminView = new AdminView(usuario, permisos);
-                        this.Hide();
-                        adminView.Show();
+
                         break;
                 }
             }
@@ -88,7 +83,7 @@ namespace DoctorAVL
 
         private string ObtenerPermisosUsuario(string usuario, string contrasena)
         {
-            string? permisos = string.Empty;
+            string permisos = string.Empty;
             string consulta = "SELECT permisos FROM usuarios WHERE nombre = @nombre AND contraseña = @contrasena";
 
             try
@@ -101,14 +96,11 @@ namespace DoctorAVL
                         cmd.Parameters.AddWithValue("@nombre", usuario);
                         cmd.Parameters.AddWithValue("@contrasena", contrasena);
 
+                        // ExecuteScalar used here for simplicity; adjust if expecting multiple rows
                         var resultado = cmd.ExecuteScalar();
                         if (resultado != null)
                         {
-                            permisos = resultado.ToString()!;
-                        }
-                        else
-                        {
-                            permisos = "valor predeterminado o lanzar una nueva InvalidOperationException(\"Se esperaba un resultado no nulo\")";
+                            permisos = Convert.ToString(resultado);
                         }
                     }
                 }
@@ -121,11 +113,7 @@ namespace DoctorAVL
             {
                 Console.WriteLine($"Error no esperado: {ex.Message}");
             }
-            return permisos; 
-        }
-        private void TFormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
+            return permisos; // Returns permissions as a string
         }
     }
 }

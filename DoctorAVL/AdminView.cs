@@ -19,9 +19,8 @@ namespace DoctorAVL
         {
             InitializeComponent();
             Cargar_usuarios();
-            this.FormClosing += AdminView_FormClosing;
         }
-        private DataTable usuarioTable;
+
         private void Cargar_usuarios()
         {
             string query = "SELECT * FROM public.usuarios";
@@ -34,9 +33,10 @@ namespace DoctorAVL
                     {
                         using (var adapter = new NpgsqlDataAdapter(cmd))
                         {
-                            usuarioTable = new DataTable();
-                            adapter.Fill(usuarioTable);
-                            dataUsers.DataSource = usuarioTable;
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            dataUsers.DataSource = table;
+                            MessageBox.Show($"Rows retrieved: {table.Rows.Count}");
                         }
                     }
                 }
@@ -50,33 +50,5 @@ namespace DoctorAVL
                 Console.WriteLine($"Error no esperado: {ex.Message}");
             }
         }
-        private void AdminView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void TxtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            if (usuarioTable != null)
-            {
-                string filter = txtBusqueda.Text.Trim();
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    usuarioTable.DefaultView.RowFilter = $"nombre LIKE '%{filter}%'";
-                }
-                else
-                {
-                    usuarioTable.DefaultView.RowFilter = string.Empty;
-                }
-
-                dataUsers.DataSource = usuarioTable.DefaultView;
-            }
-        }
-
-        private void btnAgregarP_Click_1(object sender, EventArgs e)
-        {
-            AgregarUsuario agregarUsuario = new AgregarUsuario();
-            agregarUsuario.Show();
-        }
-    }
+    } 
 }
