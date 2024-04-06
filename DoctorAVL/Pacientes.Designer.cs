@@ -1,6 +1,6 @@
 ﻿namespace DoctorAVL
 {
-    partial class AdminView
+    partial class Pacientes
     {
         /// <summary>
         /// Required designer variable.
@@ -29,46 +29,61 @@
         private void InitializeComponent()
         {
             flowLayoutPanel1 = new FlowLayoutPanel();
+            btnUsuarios = new Button();
             label1 = new Label();
-            btnPacientes = new Button();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            label2 = new Label();
-            label3 = new Label();
-            panel1 = new Panel();
-            txtBusqueda = new TextBox();
+            btnRecomendaciones = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            dataUsers = new DataGridView();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel2 = new Panel();
+            label3 = new Label();
+            label2 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnAgregarP = new Button();
             button3 = new Button();
-            dataUsers = new DataGridView();
-            tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
+            panel1 = new Panel();
+            txtBusqueda = new TextBox();
             button2 = new Button();
             button4 = new Button();
-            btnRecomendaciones = new Button();
             flowLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataUsers).BeginInit();
             tableLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataUsers).BeginInit();
-            tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             flowLayoutPanel1.BackColor = Color.FromArgb(60, 60, 81);
+            flowLayoutPanel1.Controls.Add(btnUsuarios);
             flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Controls.Add(btnPacientes);
             flowLayoutPanel1.Controls.Add(btnRecomendaciones);
-            flowLayoutPanel1.Location = new Point(-2, -2);
+            flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
-            flowLayoutPanel1.Size = new Size(1066, 37);
-            flowLayoutPanel1.TabIndex = 7;
+            flowLayoutPanel1.Size = new Size(1063, 38);
+            flowLayoutPanel1.TabIndex = 8;
+            // 
+            // btnUsuarios
+            // 
+            btnUsuarios.BackColor = Color.FromArgb(60, 60, 81);
+            btnUsuarios.FlatAppearance.BorderSize = 0;
+            btnUsuarios.FlatStyle = FlatStyle.Flat;
+            btnUsuarios.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUsuarios.ForeColor = SystemColors.ButtonHighlight;
+            btnUsuarios.Location = new Point(20, 0);
+            btnUsuarios.Margin = new Padding(0);
+            btnUsuarios.Name = "btnUsuarios";
+            btnUsuarios.Size = new Size(94, 37);
+            btnUsuarios.TabIndex = 8;
+            btnUsuarios.Text = "Usuarios";
+            btnUsuarios.UseVisualStyleBackColor = false;
+            btnUsuarios.Click += btnUsuarios_Click;
             // 
             // label1
             // 
@@ -78,86 +93,58 @@
             label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ButtonHighlight;
             label1.ImageAlign = ContentAlignment.TopCenter;
-            label1.Location = new Point(23, 0);
+            label1.Location = new Point(117, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 9, 0, 0);
             label1.Size = new Size(89, 37);
             label1.TabIndex = 9;
-            label1.Text = "Usuarios";
+            label1.Text = "Pacientes";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // btnPacientes
+            // btnRecomendaciones
             // 
-            btnPacientes.BackColor = Color.FromArgb(60, 60, 81);
-            btnPacientes.FlatAppearance.BorderSize = 0;
-            btnPacientes.FlatStyle = FlatStyle.Flat;
-            btnPacientes.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPacientes.ForeColor = SystemColors.ButtonHighlight;
-            btnPacientes.Location = new Point(115, 0);
-            btnPacientes.Margin = new Padding(0);
-            btnPacientes.Name = "btnPacientes";
-            btnPacientes.Size = new Size(94, 37);
-            btnPacientes.TabIndex = 8;
-            btnPacientes.Text = "Pacientes";
-            btnPacientes.UseVisualStyleBackColor = false;
-            btnPacientes.Click += btnPacientes_Click;
+            btnRecomendaciones.BackColor = Color.FromArgb(60, 60, 81);
+            btnRecomendaciones.FlatAppearance.BorderSize = 0;
+            btnRecomendaciones.FlatStyle = FlatStyle.Flat;
+            btnRecomendaciones.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRecomendaciones.ForeColor = SystemColors.ButtonHighlight;
+            btnRecomendaciones.Location = new Point(209, 0);
+            btnRecomendaciones.Margin = new Padding(0);
+            btnRecomendaciones.Name = "btnRecomendaciones";
+            btnRecomendaciones.Size = new Size(148, 37);
+            btnRecomendaciones.TabIndex = 10;
+            btnRecomendaciones.Text = "Recomendaciones";
+            btnRecomendaciones.UseVisualStyleBackColor = false;
             // 
-            // flowLayoutPanel2
+            // tableLayoutPanel1
             // 
-            flowLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            flowLayoutPanel2.AutoSize = true;
-            flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            flowLayoutPanel2.Location = new Point(12, 299);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(0, 0);
-            flowLayoutPanel2.TabIndex = 8;
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(dataUsers, 0, 2);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 0, 1);
+            tableLayoutPanel1.Location = new Point(12, 40);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new Padding(25, 20, 25, 0);
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.Size = new Size(1038, 631);
+            tableLayoutPanel1.TabIndex = 14;
             // 
-            // label2
+            // dataUsers
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(-11, 0);
-            label2.Margin = new Padding(0, 0, 0, 5);
-            label2.Name = "label2";
-            label2.Size = new Size(289, 46);
-            label2.TabIndex = 0;
-            label2.Text = "Lista de Usuarios";
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(-3, 51);
-            label3.Name = "label3";
-            label3.Size = new Size(485, 60);
-            label3.TabIndex = 1;
-            label3.Text = "Desde aquí puede ver todos los usuarios dentro del sistema, los usuarios tienen un rol de edición dentro de la plataforma, para ver los pacientes dirigase a la pestaña de pacientes\r\n";
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.FromArgb(197, 218, 221);
-            panel1.Controls.Add(txtBusqueda);
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(0, 0, 20, 5);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(642, 35);
-            panel1.TabIndex = 13;
-            // 
-            // txtBusqueda
-            // 
-            txtBusqueda.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtBusqueda.BackColor = Color.FromArgb(197, 218, 221);
-            txtBusqueda.BorderStyle = BorderStyle.None;
-            txtBusqueda.Cursor = Cursors.IBeam;
-            txtBusqueda.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBusqueda.Location = new Point(3, 6);
-            txtBusqueda.Margin = new Padding(5);
-            txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.PlaceholderText = "Buscar paciente por nombre...";
-            txtBusqueda.Size = new Size(617, 24);
-            txtBusqueda.TabIndex = 0;
+            dataUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataUsers.Location = new Point(28, 257);
+            dataUsers.Name = "dataUsers";
+            dataUsers.ReadOnly = true;
+            dataUsers.RowHeadersWidth = 51;
+            dataUsers.Size = new Size(982, 371);
+            dataUsers.TabIndex = 11;
             // 
             // tableLayoutPanel2
             // 
@@ -185,6 +172,28 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(485, 121);
             panel2.TabIndex = 12;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(-3, 51);
+            label3.Name = "label3";
+            label3.Size = new Size(770, 60);
+            label3.TabIndex = 1;
+            label3.Text = "Desde aquí puede ver todos los usuarios dentro del sistema, los usuarios tienen un rol de edición dentro de la plataforma, para ver los pacientes dirigase a la pestaña de pacientes\r\n";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(-11, 0);
+            label2.Margin = new Padding(0, 0, 0, 5);
+            label2.Name = "label2";
+            label2.Size = new Size(289, 46);
+            label2.TabIndex = 0;
+            label2.Text = "Lista de Usuarios";
             // 
             // tableLayoutPanel3
             // 
@@ -216,7 +225,7 @@
             btnAgregarP.TabIndex = 12;
             btnAgregarP.Text = "Agregar usuario";
             btnAgregarP.UseVisualStyleBackColor = false;
-            btnAgregarP.Click += btnAgregarP_Click_1;
+            btnAgregarP.Click += btnAgregarP_Click;
             // 
             // button3
             // 
@@ -230,37 +239,6 @@
             button3.TabIndex = 13;
             button3.Text = "Borrar usuario";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
-            // dataUsers
-            // 
-            dataUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataUsers.Location = new Point(28, 257);
-            dataUsers.Name = "dataUsers";
-            dataUsers.ReadOnly = true;
-            dataUsers.RowHeadersWidth = 51;
-            dataUsers.Size = new Size(982, 360);
-            dataUsers.TabIndex = 11;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(dataUsers, 0, 2);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 0, 1);
-            tableLayoutPanel1.Location = new Point(12, 41);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(25, 20, 25, 0);
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(1038, 620);
-            tableLayoutPanel1.TabIndex = 13;
             // 
             // tableLayoutPanel4
             // 
@@ -280,6 +258,31 @@
             tableLayoutPanel4.Size = new Size(982, 68);
             tableLayoutPanel4.TabIndex = 12;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(197, 218, 221);
+            panel1.Controls.Add(txtBusqueda);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(0, 0, 20, 5);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(642, 35);
+            panel1.TabIndex = 13;
+            // 
+            // txtBusqueda
+            // 
+            txtBusqueda.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtBusqueda.BackColor = Color.FromArgb(197, 218, 221);
+            txtBusqueda.BorderStyle = BorderStyle.None;
+            txtBusqueda.Cursor = Cursors.IBeam;
+            txtBusqueda.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBusqueda.Location = new Point(3, 6);
+            txtBusqueda.Margin = new Padding(5);
+            txtBusqueda.Name = "txtBusqueda";
+            txtBusqueda.PlaceholderText = "Buscar paciente por nombre...";
+            txtBusqueda.Size = new Size(1059, 24);
+            txtBusqueda.TabIndex = 0;
+            // 
             // button2
             // 
             button2.BackColor = SystemColors.ButtonHighlight;
@@ -295,7 +298,6 @@
             button2.Text = "Buscar paciente";
             button2.TextImageRelation = TextImageRelation.TextBeforeImage;
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
             // 
             // button4
             // 
@@ -310,68 +312,49 @@
             button4.TabIndex = 15;
             button4.Text = "Editar";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
             // 
-            // btnRecomendaciones
-            // 
-            btnRecomendaciones.BackColor = Color.FromArgb(60, 60, 81);
-            btnRecomendaciones.FlatAppearance.BorderSize = 0;
-            btnRecomendaciones.FlatStyle = FlatStyle.Flat;
-            btnRecomendaciones.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRecomendaciones.ForeColor = SystemColors.ButtonHighlight;
-            btnRecomendaciones.Location = new Point(209, 0);
-            btnRecomendaciones.Margin = new Padding(0);
-            btnRecomendaciones.Name = "btnRecomendaciones";
-            btnRecomendaciones.Size = new Size(148, 37);
-            btnRecomendaciones.TabIndex = 10;
-            btnRecomendaciones.Text = "Recomendaciones";
-            btnRecomendaciones.UseVisualStyleBackColor = false;
-            // 
-            // AdminView
+            // Pacientes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1062, 673);
-            Controls.Add(flowLayoutPanel2);
-            Controls.Add(flowLayoutPanel1);
             Controls.Add(tableLayoutPanel1);
-            MinimumSize = new Size(1080, 720);
-            Name = "AdminView";
-            Text = "AgregarPaciente";
+            Controls.Add(flowLayoutPanel1);
+            Name = "Pacientes";
+            Text = "Pacientes";
             flowLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataUsers).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataUsers).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel4.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
+
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button btnPacientes;
         private Label label1;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Label label2;
-        private Label label3;
-        private TableLayoutPanel tableLayoutPanel2;
-        private TableLayoutPanel tableLayoutPanel3;
-        private DataGridView dataUsers;
-        private TextBox txtBusqueda;
-        private Panel panel1;
-        private Panel panel2;
-        private Button btnAgregarP;
-        private TableLayoutPanel tableLayoutPanel1;
-        private TableLayoutPanel tableLayoutPanel4;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnUsuarios;
         private Button btnRecomendaciones;
+        private TableLayoutPanel tableLayoutPanel1;
+        private DataGridView dataUsers;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel2;
+        private Label label3;
+        private Label label2;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Button btnAgregarP;
+        private Button button3;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Panel panel1;
+        private TextBox txtBusqueda;
+        private Button button2;
+        private Button button4;
     }
 }
