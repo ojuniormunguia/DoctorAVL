@@ -26,13 +26,15 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label5 = new Label();
+            txtUsuario = new TextBox();
             txtContrasena = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             cmboxPermiso = new ComboBox();
-            txtUsuario = new TextBox();
+            txtNombre = new TextBox();
             btnAgregar = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -40,23 +42,43 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(txtUsuario);
             panel1.Controls.Add(txtContrasena);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(cmboxPermiso);
-            panel1.Controls.Add(txtUsuario);
+            panel1.Controls.Add(txtNombre);
             panel1.Controls.Add(btnAgregar);
             panel1.Location = new Point(132, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(336, 426);
             panel1.TabIndex = 0;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 152);
+            label5.Name = "label5";
+            label5.Size = new Size(242, 20);
+            label5.TabIndex = 10;
+            label5.Text = "Escribir usuario (para iniciar sesión)";
+            // 
+            // txtUsuario
+            // 
+            txtUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtUsuario.Location = new Point(3, 175);
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.PlaceholderText = "Usuario";
+            txtUsuario.Size = new Size(330, 27);
+            txtUsuario.TabIndex = 9;
+            // 
             // txtContrasena
             // 
             txtContrasena.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtContrasena.Location = new Point(3, 207);
+            txtContrasena.Location = new Point(3, 237);
             txtContrasena.Name = "txtContrasena";
             txtContrasena.PasswordChar = '*';
             txtContrasena.PlaceholderText = "Contraseña";
@@ -78,7 +100,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 251);
+            label3.Location = new Point(3, 278);
             label3.Name = "label3";
             label3.Size = new Size(151, 20);
             label3.TabIndex = 6;
@@ -87,7 +109,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 184);
+            label2.Location = new Point(3, 214);
             label2.Name = "label2";
             label2.Size = new Size(133, 20);
             label2.TabIndex = 5;
@@ -96,7 +118,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 121);
+            label1.Location = new Point(3, 88);
             label1.Name = "label1";
             label1.Size = new Size(186, 20);
             label1.TabIndex = 4;
@@ -107,24 +129,24 @@
             cmboxPermiso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmboxPermiso.FormattingEnabled = true;
             cmboxPermiso.Items.AddRange(new object[] { "administrador", "doctor", "digitador" });
-            cmboxPermiso.Location = new Point(3, 274);
+            cmboxPermiso.Location = new Point(3, 301);
             cmboxPermiso.Name = "cmboxPermiso";
             cmboxPermiso.Size = new Size(330, 28);
             cmboxPermiso.TabIndex = 3;
             // 
-            // txtUsuario
+            // txtNombre
             // 
-            txtUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtUsuario.Location = new Point(3, 144);
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.PlaceholderText = "Usuario";
-            txtUsuario.Size = new Size(330, 27);
-            txtUsuario.TabIndex = 1;
+            txtNombre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtNombre.Location = new Point(3, 111);
+            txtNombre.Name = "txtNombre";
+            txtNombre.PlaceholderText = "Nombre completo";
+            txtNombre.Size = new Size(330, 27);
+            txtNombre.TabIndex = 1;
             // 
             // btnAgregar
             // 
             btnAgregar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnAgregar.Location = new Point(3, 338);
+            btnAgregar.Location = new Point(3, 369);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(330, 29);
             btnAgregar.TabIndex = 0;
@@ -150,7 +172,7 @@
         private Panel panel1;
         private TextBox textBox3;
         private TextBox txtContraseña;
-        private TextBox txtUsuario;
+        private TextBox txtNombre;
         private Button btnAgregar;
         private ComboBox cmboxPermiso;
         private Label label3;
@@ -158,5 +180,7 @@
         private Label label1;
         private Label label4;
         private TextBox txtContrasena;
+        private Label label5;
+        private TextBox txtUsuario;
     }
 }

@@ -194,7 +194,7 @@
             label4.Name = "label4";
             label4.Size = new Size(547, 46);
             label4.TabIndex = 7;
-            label4.Text = "Agregar usuario";
+            label4.Text = "Gestión de Paciente";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -202,16 +202,16 @@
             label1.AutoSize = true;
             label1.Location = new Point(0, 86);
             label1.Name = "label1";
-            label1.Size = new Size(186, 20);
+            label1.Size = new Size(215, 20);
             label1.TabIndex = 4;
-            label1.Text = "Escribir nombre de usuario";
+            label1.Text = "Escribir el nombre del paciente";
             // 
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtNombre.Location = new Point(0, 109);
             txtNombre.Name = "txtNombre";
-            txtNombre.PlaceholderText = "Usuario";
+            txtNombre.PlaceholderText = "Nombre completo";
             txtNombre.Size = new Size(550, 27);
             txtNombre.TabIndex = 1;
             // 
@@ -222,7 +222,7 @@
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(550, 40);
             btnAgregar.TabIndex = 0;
-            btnAgregar.Text = "Agregar Usuario";
+            btnAgregar.Text = "Agregar paciente";
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
             // 

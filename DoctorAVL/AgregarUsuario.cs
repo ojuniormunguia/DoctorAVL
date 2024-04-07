@@ -15,35 +15,39 @@ namespace DoctorAVL
     public partial class AgregarUsuario : Form
     {
         private string nombreEditar;
+        private string usuarioEditar;
         private string contrasenaEditar;
         private string permisosEditar;
         private AdminView adminViewReference;
         string cadenaConexion = "Server=hansken.db.elephantsql.com;Port=5432;Database=ikegunyj;User Id=ikegunyj;Password=PjDjGMbve9rwF5eP4fMGm5M59yzCpExq;";
-        public AgregarUsuario(AdminView adminView, string nombre, string contraseña, string permisos)
+        public AgregarUsuario(AdminView adminView, string nombre, string usuario, string contraseña, string permisos)
         {
             nombreEditar = nombre;
+            usuarioEditar = usuario;
             contrasenaEditar = contraseña;
             permisosEditar = permisos;
+
             InitializeComponent();
-            txtUsuario.Text = nombreEditar;
+            txtNombre.Text = nombreEditar;
+            txtUsuario.Text = usuarioEditar;
             txtContrasena.Text = contrasenaEditar;
             cmboxPermiso.SelectedItem = permisosEditar;
             adminViewReference = adminView;
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            agregarUsuario(txtUsuario.Text, txtContrasena.Text, cmboxPermiso.Text);
+            agregarUsuario(txtNombre.Text, txtUsuario.Text,txtContrasena.Text, cmboxPermiso.Text);
             this.Hide();
         }
-        private void agregarUsuario(string usuario, string contrasena, string permisos)
+        private void agregarUsuario(string nombre, string usuario,string contrasena, string permisos)
         {
-            string query = "INSERT INTO public.usuarios (nombre, contraseña, permisos) VALUES (@usuario, @contrasena, @permisos::permiso);";
-            if (!string.IsNullOrEmpty(nombreEditar))
+            string query = "INSERT INTO public.usuarios (nombre, usuario, contraseña, permisos) VALUES (@nombre, @usuario, @contrasena, @permisos::permiso);";
+            if (!string.IsNullOrEmpty(usuarioEditar))
             {
                 query = @"
                     UPDATE public.usuarios
-                    SET nombre = @usuario, contraseña = @contrasena, permisos = @permisos::permiso
-                    WHERE nombre = @nombreEditar;";
+                    SET nombre = @nombre, usuario = @usuario,contraseña = @contrasena, permisos = @permisos::permiso
+                    WHERE usuario = @usuarioEditar;";
             }
             try
             {
@@ -52,10 +56,11 @@ namespace DoctorAVL
                     conexion.Open();
                     using (var cmd = new NpgsqlCommand(query, conexion))
                     {
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
                         cmd.Parameters.AddWithValue("@usuario", usuario);
                         cmd.Parameters.AddWithValue("@contrasena", contrasena);
                         cmd.Parameters.AddWithValue("@permisos", permisos);
-                        cmd.Parameters.AddWithValue("@nombreEditar", nombreEditar);
+                        cmd.Parameters.AddWithValue("@nombreEditar", usuarioEditar);
                         cmd.ExecuteNonQuery();
                         adminViewReference.Cargar_usuarios();
                     }

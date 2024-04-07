@@ -59,7 +59,7 @@ namespace DoctorAVL
         private bool UsuariosContrasenaExiste(string usuario, string contrasena)
         {
             bool existe = false;
-            string consulta = "SELECT COUNT (*) FROM usuarios WHERE nombre = @nombre AND contraseña = @contrasena";
+            string consulta = "SELECT COUNT (*) FROM usuarios WHERE usuario = @usuario AND contraseña = @contrasena";
 
             try
             {
@@ -68,7 +68,7 @@ namespace DoctorAVL
                     conexion.Open();
                     using (var cmd = new NpgsqlCommand(consulta, conexion))
                     {
-                        cmd.Parameters.AddWithValue("@nombre", usuario);
+                        cmd.Parameters.AddWithValue("@usuario", usuario);
                         cmd.Parameters.AddWithValue("@contrasena", contrasena); 
                         int resultado = Convert.ToInt32(cmd.ExecuteScalar());
                         existe = resultado > 0;
@@ -89,7 +89,7 @@ namespace DoctorAVL
         private string ObtenerPermisosUsuario(string usuario, string contrasena)
         {
             string? permisos = string.Empty;
-            string consulta = "SELECT permisos FROM usuarios WHERE nombre = @nombre AND contraseña = @contrasena";
+            string consulta = "SELECT permisos FROM usuarios WHERE usuario = @usuario AND contraseña = @contrasena";
 
             try
             {
@@ -98,7 +98,7 @@ namespace DoctorAVL
                     conexion.Open();
                     using (var cmd = new NpgsqlCommand(consulta, conexion))
                     {
-                        cmd.Parameters.AddWithValue("@nombre", usuario);
+                        cmd.Parameters.AddWithValue("@usuario", usuario);
                         cmd.Parameters.AddWithValue("@contrasena", contrasena);
 
                         var resultado = cmd.ExecuteScalar();

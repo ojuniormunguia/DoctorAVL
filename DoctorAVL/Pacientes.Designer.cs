@@ -31,24 +31,25 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnUsuarios = new Button();
             label1 = new Label();
-            btnRecomendaciones = new Button();
+            btnArbol = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
-            dataUsers = new DataGridView();
+            dataPacientes = new DataGridView();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel2 = new Panel();
             label3 = new Label();
             label2 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnAgregarP = new Button();
-            button3 = new Button();
+            btnBorrarP = new Button();
+            btnTratamiento = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
             panel1 = new Panel();
             txtBusqueda = new TextBox();
             button2 = new Button();
-            button4 = new Button();
+            btnEditarP = new Button();
             flowLayoutPanel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataUsers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataPacientes).BeginInit();
             tableLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -62,7 +63,7 @@
             flowLayoutPanel1.BackColor = Color.FromArgb(60, 60, 81);
             flowLayoutPanel1.Controls.Add(btnUsuarios);
             flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Controls.Add(btnRecomendaciones);
+            flowLayoutPanel1.Controls.Add(btnArbol);
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
@@ -96,55 +97,56 @@
             label1.Location = new Point(117, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 9, 0, 0);
-            label1.Size = new Size(89, 37);
+            label1.Size = new Size(98, 37);
             label1.TabIndex = 9;
             label1.Text = "Pacientes";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // btnRecomendaciones
+            // btnArbol
             // 
-            btnRecomendaciones.BackColor = Color.FromArgb(60, 60, 81);
-            btnRecomendaciones.FlatAppearance.BorderSize = 0;
-            btnRecomendaciones.FlatStyle = FlatStyle.Flat;
-            btnRecomendaciones.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRecomendaciones.ForeColor = SystemColors.ButtonHighlight;
-            btnRecomendaciones.Location = new Point(209, 0);
-            btnRecomendaciones.Margin = new Padding(0);
-            btnRecomendaciones.Name = "btnRecomendaciones";
-            btnRecomendaciones.Size = new Size(148, 37);
-            btnRecomendaciones.TabIndex = 10;
-            btnRecomendaciones.Text = "Recomendaciones";
-            btnRecomendaciones.UseVisualStyleBackColor = false;
+            btnArbol.BackColor = Color.FromArgb(60, 60, 81);
+            btnArbol.FlatAppearance.BorderSize = 0;
+            btnArbol.FlatStyle = FlatStyle.Flat;
+            btnArbol.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnArbol.ForeColor = SystemColors.ButtonHighlight;
+            btnArbol.Location = new Point(218, 0);
+            btnArbol.Margin = new Padding(0);
+            btnArbol.Name = "btnArbol";
+            btnArbol.Size = new Size(79, 37);
+            btnArbol.TabIndex = 10;
+            btnArbol.Text = "Árbol";
+            btnArbol.UseVisualStyleBackColor = false;
+            btnArbol.Click += btnArbol_Click;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(dataUsers, 0, 2);
+            tableLayoutPanel1.Controls.Add(dataPacientes, 0, 2);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel4, 0, 1);
             tableLayoutPanel1.Location = new Point(12, 40);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new Padding(25, 20, 25, 0);
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 160F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 74F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.Size = new Size(1038, 631);
             tableLayoutPanel1.TabIndex = 14;
             // 
-            // dataUsers
+            // dataPacientes
             // 
-            dataUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataUsers.Location = new Point(28, 257);
-            dataUsers.Name = "dataUsers";
-            dataUsers.ReadOnly = true;
-            dataUsers.RowHeadersWidth = 51;
-            dataUsers.Size = new Size(982, 371);
-            dataUsers.TabIndex = 11;
+            dataPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataPacientes.Location = new Point(28, 297);
+            dataPacientes.Name = "dataPacientes";
+            dataPacientes.ReadOnly = true;
+            dataPacientes.RowHeadersWidth = 51;
+            dataPacientes.Size = new Size(982, 371);
+            dataPacientes.TabIndex = 11;
             // 
             // tableLayoutPanel2
             // 
@@ -161,7 +163,7 @@
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(982, 154);
+            tableLayoutPanel2.Size = new Size(982, 194);
             tableLayoutPanel2.TabIndex = 11;
             // 
             // panel2
@@ -179,7 +181,7 @@
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(-3, 51);
             label3.Name = "label3";
-            label3.Size = new Size(770, 60);
+            label3.Size = new Size(488, 60);
             label3.TabIndex = 1;
             label3.Text = "Desde aquí puede ver todos los usuarios dentro del sistema, los usuarios tienen un rol de edición dentro de la plataforma, para ver los pacientes dirigase a la pestaña de pacientes\r\n";
             // 
@@ -191,9 +193,9 @@
             label2.Location = new Point(-11, 0);
             label2.Margin = new Padding(0, 0, 0, 5);
             label2.Name = "label2";
-            label2.Size = new Size(289, 46);
+            label2.Size = new Size(300, 46);
             label2.TabIndex = 0;
-            label2.Text = "Lista de Usuarios";
+            label2.Text = "Lista de pacientes";
             // 
             // tableLayoutPanel3
             // 
@@ -204,13 +206,15 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 228F));
             tableLayoutPanel3.Controls.Add(btnAgregarP, 1, 0);
-            tableLayoutPanel3.Controls.Add(button3, 1, 1);
+            tableLayoutPanel3.Controls.Add(btnBorrarP, 1, 1);
+            tableLayoutPanel3.Controls.Add(btnTratamiento, 1, 2);
             tableLayoutPanel3.Location = new Point(494, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowCount = 3;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle());
-            tableLayoutPanel3.Size = new Size(485, 148);
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(485, 188);
             tableLayoutPanel3.TabIndex = 13;
             // 
             // btnAgregarP
@@ -223,22 +227,36 @@
             btnAgregarP.Name = "btnAgregarP";
             btnAgregarP.Size = new Size(222, 43);
             btnAgregarP.TabIndex = 12;
-            btnAgregarP.Text = "Agregar usuario";
+            btnAgregarP.Text = "Agregar paciente";
             btnAgregarP.UseVisualStyleBackColor = false;
             btnAgregarP.Click += btnAgregarP_Click;
             // 
-            // button3
+            // btnBorrarP
             // 
-            button3.BackColor = Color.FromArgb(229, 65, 65);
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = SystemColors.ButtonHighlight;
-            button3.Location = new Point(260, 58);
-            button3.Name = "button3";
-            button3.Size = new Size(222, 40);
-            button3.TabIndex = 13;
-            button3.Text = "Borrar usuario";
-            button3.UseVisualStyleBackColor = false;
+            btnBorrarP.BackColor = Color.FromArgb(229, 65, 65);
+            btnBorrarP.FlatStyle = FlatStyle.Flat;
+            btnBorrarP.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBorrarP.ForeColor = SystemColors.ButtonHighlight;
+            btnBorrarP.Location = new Point(260, 58);
+            btnBorrarP.Name = "btnBorrarP";
+            btnBorrarP.Size = new Size(222, 40);
+            btnBorrarP.TabIndex = 13;
+            btnBorrarP.Text = "Borrar paciente";
+            btnBorrarP.UseVisualStyleBackColor = false;
+            btnBorrarP.Click += btnBorrarP_Click;
+            // 
+            // btnTratamiento
+            // 
+            btnTratamiento.BackColor = Color.Green;
+            btnTratamiento.FlatStyle = FlatStyle.Flat;
+            btnTratamiento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnTratamiento.ForeColor = SystemColors.ButtonHighlight;
+            btnTratamiento.Location = new Point(260, 113);
+            btnTratamiento.Name = "btnTratamiento";
+            btnTratamiento.Size = new Size(222, 40);
+            btnTratamiento.TabIndex = 14;
+            btnTratamiento.Text = "Ver tratamiento";
+            btnTratamiento.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel4
             // 
@@ -249,8 +267,8 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
             tableLayoutPanel4.Controls.Add(panel1, 0, 0);
             tableLayoutPanel4.Controls.Add(button2, 1, 0);
-            tableLayoutPanel4.Controls.Add(button4, 2, 0);
-            tableLayoutPanel4.Location = new Point(28, 183);
+            tableLayoutPanel4.Controls.Add(btnEditarP, 2, 0);
+            tableLayoutPanel4.Location = new Point(28, 223);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RightToLeft = RightToLeft.No;
             tableLayoutPanel4.RowCount = 1;
@@ -280,7 +298,7 @@
             txtBusqueda.Margin = new Padding(5);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.PlaceholderText = "Buscar paciente por nombre...";
-            txtBusqueda.Size = new Size(1059, 24);
+            txtBusqueda.Size = new Size(634, 24);
             txtBusqueda.TabIndex = 0;
             // 
             // button2
@@ -299,19 +317,20 @@
             button2.TextImageRelation = TextImageRelation.TextBeforeImage;
             button2.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnEditarP
             // 
-            button4.BackColor = SystemColors.ControlDarkDark;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button4.ForeColor = SystemColors.ButtonHighlight;
-            button4.Location = new Point(885, 0);
-            button4.Margin = new Padding(3, 0, 3, 0);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 35);
-            button4.TabIndex = 15;
-            button4.Text = "Editar";
-            button4.UseVisualStyleBackColor = false;
+            btnEditarP.BackColor = SystemColors.ControlDarkDark;
+            btnEditarP.FlatStyle = FlatStyle.Flat;
+            btnEditarP.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnEditarP.ForeColor = SystemColors.ButtonHighlight;
+            btnEditarP.Location = new Point(885, 0);
+            btnEditarP.Margin = new Padding(3, 0, 3, 0);
+            btnEditarP.Name = "btnEditarP";
+            btnEditarP.Size = new Size(94, 35);
+            btnEditarP.TabIndex = 15;
+            btnEditarP.Text = "Editar";
+            btnEditarP.UseVisualStyleBackColor = false;
+            btnEditarP.Click += btnEditarP_Click;
             // 
             // Pacientes
             // 
@@ -324,7 +343,7 @@
             Text = "Pacientes";
             flowLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataUsers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataPacientes).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             panel2.ResumeLayout(false);
@@ -341,20 +360,21 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Label label1;
         private Button btnUsuarios;
-        private Button btnRecomendaciones;
+        private Button btnArbol;
         private TableLayoutPanel tableLayoutPanel1;
-        private DataGridView dataUsers;
+        private DataGridView dataPacientes;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel2;
         private Label label3;
         private Label label2;
         private TableLayoutPanel tableLayoutPanel3;
         private Button btnAgregarP;
-        private Button button3;
+        private Button btnBorrarP;
         private TableLayoutPanel tableLayoutPanel4;
         private Panel panel1;
         private TextBox txtBusqueda;
         private Button button2;
-        private Button button4;
+        private Button btnEditarP;
+        private Button btnTratamiento;
     }
 }

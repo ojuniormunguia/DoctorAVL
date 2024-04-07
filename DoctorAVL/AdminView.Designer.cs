@@ -31,6 +31,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
             btnPacientes = new Button();
+            btnArbol = new Button();
             flowLayoutPanel2 = new FlowLayoutPanel();
             label2 = new Label();
             label3 = new Label();
@@ -46,7 +47,6 @@
             tableLayoutPanel4 = new TableLayoutPanel();
             button2 = new Button();
             button4 = new Button();
-            btnRecomendaciones = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -63,7 +63,7 @@
             flowLayoutPanel1.BackColor = Color.FromArgb(60, 60, 81);
             flowLayoutPanel1.Controls.Add(label1);
             flowLayoutPanel1.Controls.Add(btnPacientes);
-            flowLayoutPanel1.Controls.Add(btnRecomendaciones);
+            flowLayoutPanel1.Controls.Add(btnArbol);
             flowLayoutPanel1.Location = new Point(-2, -2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
@@ -101,6 +101,22 @@
             btnPacientes.Text = "Pacientes";
             btnPacientes.UseVisualStyleBackColor = false;
             btnPacientes.Click += btnPacientes_Click;
+            // 
+            // btnArbol
+            // 
+            btnArbol.BackColor = Color.FromArgb(60, 60, 81);
+            btnArbol.FlatAppearance.BorderSize = 0;
+            btnArbol.FlatStyle = FlatStyle.Flat;
+            btnArbol.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnArbol.ForeColor = SystemColors.ButtonHighlight;
+            btnArbol.Location = new Point(209, 0);
+            btnArbol.Margin = new Padding(0);
+            btnArbol.Name = "btnArbol";
+            btnArbol.Size = new Size(79, 37);
+            btnArbol.TabIndex = 11;
+            btnArbol.Text = "Árbol";
+            btnArbol.UseVisualStyleBackColor = false;
+            btnArbol.Click += btnArbol_Click;
             // 
             // flowLayoutPanel2
             // 
@@ -312,21 +328,6 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
-            // btnRecomendaciones
-            // 
-            btnRecomendaciones.BackColor = Color.FromArgb(60, 60, 81);
-            btnRecomendaciones.FlatAppearance.BorderSize = 0;
-            btnRecomendaciones.FlatStyle = FlatStyle.Flat;
-            btnRecomendaciones.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRecomendaciones.ForeColor = SystemColors.ButtonHighlight;
-            btnRecomendaciones.Location = new Point(209, 0);
-            btnRecomendaciones.Margin = new Padding(0);
-            btnRecomendaciones.Name = "btnRecomendaciones";
-            btnRecomendaciones.Size = new Size(148, 37);
-            btnRecomendaciones.TabIndex = 10;
-            btnRecomendaciones.Text = "Recomendaciones";
-            btnRecomendaciones.UseVisualStyleBackColor = false;
-            // 
             // AdminView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -372,6 +373,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button btnRecomendaciones;
+        private Button btnArbol;
     }
 }

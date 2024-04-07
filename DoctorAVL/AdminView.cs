@@ -30,7 +30,7 @@ namespace DoctorAVL
         private DataTable usuarioTable;
         public void Cargar_usuarios()
         {
-            string query = "SELECT * FROM public.usuarios";
+            string query = "SELECT nombre, usuario, contraseña, permisos FROM public.usuarios";
             try
             {
                 using (var conexion = new NpgsqlConnection(cadenaConexion))
@@ -111,7 +111,7 @@ namespace DoctorAVL
         private void btnAgregarP_Click_1(object sender, EventArgs e)
         {
 
-            AgregarUsuario agregarUsuario = new AgregarUsuario(this, "", "", "");
+            AgregarUsuario agregarUsuario = new AgregarUsuario(this, "", "", "", "");
             agregarUsuario.Show();
         }
 
@@ -170,11 +170,12 @@ namespace DoctorAVL
                 if (dgv != null)
                 {
                     string nombre = dgv.Rows[e.RowIndex].Cells["nombreColumnName"].Value.ToString();
+                    string usuario = dgv.Rows[e.RowIndex].Cells["usuarioColumnName"].Value.ToString();
                     string contraseña = dgv.Rows[e.RowIndex].Cells["contraseñaColumnName"].Value.ToString();
                     string permisos = dgv.Rows[e.RowIndex].Cells["permisosColumnName"].Value.ToString();
 
                     // Open the AgregarUsuario form with the selected row's data
-                    AgregarUsuario agregarUsuario = new AgregarUsuario(this, nombre, contraseña, permisos); // Assuming constructor is modified to accept these parameters
+                    AgregarUsuario agregarUsuario = new AgregarUsuario(this, nombre, usuario, contraseña, permisos); // Assuming constructor is modified to accept these parameters
                     agregarUsuario.Show();
                 }
             }
@@ -188,10 +189,11 @@ namespace DoctorAVL
                 DataGridViewRow filaSeleccionada = dataUsers.Rows[indexFilaSeleccionada];
 
                 string nombreEditar = Convert.ToString(filaSeleccionada.Cells[0].Value);
-                string contrasenaEditar = Convert.ToString(filaSeleccionada.Cells[1].Value);
-                string permisosEditar = Convert.ToString(filaSeleccionada.Cells[2].Value);
+                string usuarioEditar = Convert.ToString(filaSeleccionada.Cells[1].Value);
+                string contrasenaEditar = Convert.ToString(filaSeleccionada.Cells[2].Value);
+                string permisosEditar = Convert.ToString(filaSeleccionada.Cells[3].Value);
 
-                AgregarUsuario agregarUsuario = new AgregarUsuario(this, nombreEditar, contrasenaEditar, permisosEditar);
+                AgregarUsuario agregarUsuario = new AgregarUsuario(this, nombreEditar, usuarioEditar, contrasenaEditar, permisosEditar);
                 agregarUsuario.Show();
             }
         }
@@ -201,6 +203,13 @@ namespace DoctorAVL
             Pacientes pacientes = new Pacientes(usuario, permisos);
             this.Hide();
             pacientes.Show();
+        }
+
+        private void btnArbol_Click(object sender, EventArgs e)
+        {
+            ArbolView arbolView = new ArbolView(usuario, permisos);
+            this.Hide();
+            arbolView.Show();
         }
     }
 }

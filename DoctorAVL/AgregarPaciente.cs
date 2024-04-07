@@ -14,14 +14,59 @@ namespace DoctorAVL
     public partial class AgregarPaciente : Form
     {
         private string cadenaConexion = "Server=hansken.db.elephantsql.com;Port=5432;Database=ikegunyj;User Id=ikegunyj;Password=PjDjGMbve9rwF5eP4fMGm5M59yzCpExq;";
-        public AgregarPaciente()
+        private string nombreEditar;
+        private string sangreEditar;
+        private string presionEditar;
+        private string generoEditar;
+        private string doctorEditar;
+        private Pacientes pacienteReference;
+        public AgregarPaciente(Pacientes pacientes, string nombreEditar, string sangreEditar, string presionEditar, string generoEditar, string doctorEditar)
         {
             InitializeComponent();
             MostrarDoctores();
+
+            this.nombreEditar = nombreEditar;
+            this.sangreEditar = sangreEditar;
+            this.presionEditar = presionEditar;
+            this.generoEditar = generoEditar;
+            this.doctorEditar = doctorEditar;
+            pacienteReference = pacientes;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            string nombre = txtNombre.Text;
+            string genero = cmbGenero.SelectedItem.ToString();
+            string sangre = cmbSangre.SelectedItem.ToString();
+            string presion = cmbPresion.SelectedItem.ToString();
+            string doctor = (cmbDoctores.SelectedItem as ComboboxItem).Text;
+
+            using (var conn = new NpgsqlConnection(cadenaConexion))
+            {
+                conn.Open();
+                // Insertar nuevo paciente
+                string insertPaciente = "INSERT INTO Pacientes (Nombre, Genero, TipoSangre, PresionArterial, Doctor) VALUES (@nombre, @genero, @sangre, @presion, @doctor);";
+                using (var cmd = new NpgsqlCommand(insertPaciente, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@genero", genero);
+                    cmd.Parameters.AddWithValue("@sangre", sangre);
+                    cmd.Parameters.AddWithValue("@presion", presion);
+                    cmd.Parameters.AddWithValue("@doctor", doctor);
+
+                    int result = cmd.ExecuteNonQuery();
+                    pacienteReference.LoadPacientesData();
+
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Paciente agregado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el paciente.");
+                    }
+                }
+            }
 
         }
 
@@ -50,7 +95,6 @@ namespace DoctorAVL
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
-
         }
 
         public class ComboboxItem
@@ -67,6 +111,33 @@ namespace DoctorAVL
                 return Text;
             }
         }
+        public enum PresionArterial
+        {
+            Alta,
+            Media,
+            Baja
+        }
 
+        public enum TipoSangre
+        {
+            A,
+            B,
+            AB,
+            O
+        }
+        public enum GeneroPaciente
+        {
+            mujer,
+            hombre
+        }
+
+        public class Paciente
+        {
+            public string Nombre { get; set; }
+            public GeneroPaciente Genero { get; set; }
+            public TipoSangre Sangre { get; set; }
+            public PresionArterial Presion { get; set; }
+            public string Doctor { get; set; }
+        }
     }
 }
