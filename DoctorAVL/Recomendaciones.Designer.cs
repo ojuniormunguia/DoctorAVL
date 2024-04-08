@@ -40,6 +40,7 @@
             listView1.TileSize = new Size(700, 100);
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Tile;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Recomendaciones
             // 

@@ -32,6 +32,8 @@
             btnUsuarios = new Button();
             label1 = new Label();
             btnArbol = new Button();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            button1 = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataPacientes = new DataGridView();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -48,6 +50,7 @@
             button2 = new Button();
             btnEditarP = new Button();
             flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataPacientes).BeginInit();
             tableLayoutPanel2.SuspendLayout();
@@ -64,9 +67,10 @@
             flowLayoutPanel1.Controls.Add(btnUsuarios);
             flowLayoutPanel1.Controls.Add(label1);
             flowLayoutPanel1.Controls.Add(btnArbol);
+            flowLayoutPanel1.Controls.Add(tableLayoutPanel5);
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
+            flowLayoutPanel1.Padding = new Padding(20, 0, 0, 0);
             flowLayoutPanel1.Size = new Size(1063, 38);
             flowLayoutPanel1.TabIndex = 8;
             // 
@@ -97,7 +101,7 @@
             label1.Location = new Point(117, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 9, 0, 0);
-            label1.Size = new Size(98, 37);
+            label1.Size = new Size(98, 40);
             label1.TabIndex = 9;
             label1.Text = "Pacientes";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -117,6 +121,31 @@
             btnArbol.Text = "Árbol";
             btnArbol.UseVisualStyleBackColor = false;
             btnArbol.Click += btnArbol_Click;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutPanel5.Controls.Add(button1, 1, 0);
+            tableLayoutPanel5.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;
+            tableLayoutPanel5.Location = new Point(300, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Size = new Size(228, 34);
+            tableLayoutPanel5.TabIndex = 13;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(81, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(144, 28);
+            button1.TabIndex = 0;
+            button1.Text = "Cerrar Sesión";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // tableLayoutPanel1
             // 
@@ -343,6 +372,7 @@
             Name = "Pacientes";
             Text = "Pacientes";
             flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataPacientes).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
@@ -377,5 +407,7 @@
         private Button button2;
         private Button btnEditarP;
         private Button btnTratamiento;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Button button1;
     }
 }

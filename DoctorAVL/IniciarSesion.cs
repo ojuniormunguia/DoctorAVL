@@ -37,15 +37,15 @@ namespace DoctorAVL
                         break;
 
                     case "doctor":
-                        adminView = new AdminView(usuario, permisos);
+                        Pacientes pacientes = new Pacientes(usuario, permisos);
                         this.Hide();
-                        adminView.Show();
+                        pacientes.Show();
                         break;
 
                     case "digitador":
-                        adminView = new AdminView(usuario, permisos);
+                        pacientes = new Pacientes(usuario, permisos);
                         this.Hide();
-                        adminView.Show();
+                        pacientes.Show();
                         break;
                 }
             }

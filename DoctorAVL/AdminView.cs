@@ -211,5 +211,12 @@ namespace DoctorAVL
             this.Hide();
             arbolView.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion();
+            this.Hide();
+            iniciarSesion.Show();
+        }
     }
 }

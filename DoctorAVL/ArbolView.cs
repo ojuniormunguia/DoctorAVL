@@ -22,6 +22,7 @@ namespace DoctorAVL
             usuario = usuarios;
             permisos = permiso;
             InitializeComponent();
+            btnUsuarios.Visible = permisos == "administrador";
 
             LoadPacientesInTreeView();
             this.FormClosing += ArbolView_FormClosing;
@@ -31,58 +32,103 @@ namespace DoctorAVL
         {
             using (var conn = new NpgsqlConnection(cadenaConexion))
             {
-                conn.Open();
-                string query = "SELECT nombre, genero, tiposangre, presionarterial FROM \"public\".\"pacientes\"";
-                using (var cmd = new NpgsqlCommand(query, conn))
+                try
                 {
-                    using (var reader = cmd.ExecuteReader())
+                    conn.Open();
+
+                    string doctorName = null;
+
+                    if (permisos == "doctor")
                     {
-                        Dictionary<string, TreeNode> bloodTypeNodes = new Dictionary<string, TreeNode>();
+                        string userQuery = "SELECT nombre FROM \"public\".\"usuarios\" WHERE usuario = @usuario";
 
-                        while (reader.Read())
+                        using (var userCmd = new NpgsqlCommand(userQuery, conn))
                         {
-                            string nombre = reader["nombre"].ToString();
-                            string genero = reader["genero"].ToString();
-                            string tiposangre = reader["tiposangre"].ToString();
-                            string presionarterial = reader["presionarterial"].ToString();
+                            userCmd.Parameters.AddWithValue("@usuario", usuario);
 
-                            if (!bloodTypeNodes.ContainsKey(tiposangre))
+                            using (var reader = userCmd.ExecuteReader())
                             {
-                                TreeNode bloodNode = treePacientes.Nodes.Add(tiposangre, tiposangre);
-                                bloodTypeNodes[tiposangre] = bloodNode;
+                                if (reader.Read())
+                                {
+                                    doctorName = reader["nombre"].ToString();
+                                }
                             }
+                        }
 
-                            TreeNode bloodTypeNode = bloodTypeNodes[tiposangre];
-                            TreeNode[] pressureNodes = bloodTypeNode.Nodes.Find(presionarterial, false);
-                            TreeNode pressureNode;
-                            if (pressureNodes.Length == 0)
-                            {
-                                pressureNode = bloodTypeNode.Nodes.Add(presionarterial, presionarterial);
-                            }
-                            else
-                            {
-                                pressureNode = pressureNodes[0];
-                            }
+                        if (string.IsNullOrEmpty(doctorName))
+                        {
+                            MessageBox.Show("No se encontró el nombre del doctor.");
+                            return; 
+                        }
+                    }
 
-                            TreeNode[] genderNodes = pressureNode.Nodes.Find(genero, false);
-                            TreeNode genderNode;
-                            if (genderNodes.Length == 0)
-                            {
-                                genderNode = pressureNode.Nodes.Add(genero, genero);
-                            }
-                            else
-                            {
-                                genderNode = genderNodes[0];
-                            }
+                    string query = "SELECT nombre, genero, tiposangre, presionarterial FROM \"public\".\"pacientes\"";
+                    if (permisos == "doctor" && doctorName != null)
+                    {
+                        query += " WHERE doctor = @doctor";
+                    }
 
-                            genderNode.Nodes.Add(nombre, nombre);
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        if (permisos == "doctor" && doctorName != null)
+                        {
+                            cmd.Parameters.AddWithValue("@doctor", doctorName);
+                        }
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            Dictionary<string, TreeNode> bloodTypeNodes = new Dictionary<string, TreeNode>();
+
+                            while (reader.Read())
+                            {
+                                string nombre = reader["nombre"].ToString();
+                                string genero = reader["genero"].ToString();
+                                string tiposangre = reader["tiposangre"].ToString();
+                                string presionarterial = reader["presionarterial"].ToString();
+
+                                if (!bloodTypeNodes.ContainsKey(tiposangre))
+                                {
+                                    TreeNode bloodNode = treePacientes.Nodes.Add(tiposangre, tiposangre);
+                                    bloodTypeNodes[tiposangre] = bloodNode;
+                                }
+
+                                TreeNode bloodTypeNode = bloodTypeNodes[tiposangre];
+                                TreeNode[] pressureNodes = bloodTypeNode.Nodes.Find(presionarterial, false);
+                                TreeNode pressureNode;
+                                if (pressureNodes.Length == 0)
+                                {
+                                    pressureNode = bloodTypeNode.Nodes.Add(presionarterial, presionarterial);
+                                }
+                                else
+                                {
+                                    pressureNode = pressureNodes[0];
+                                }
+
+                                TreeNode[] genderNodes = pressureNode.Nodes.Find(genero, false);
+                                TreeNode genderNode;
+                                if (genderNodes.Length == 0)
+                                {
+                                    genderNode = pressureNode.Nodes.Add(genero, genero);
+                                }
+                                else
+                                {
+                                    genderNode = genderNodes[0];
+                                }
+
+                                genderNode.Nodes.Add(nombre, nombre);
+                            }
                         }
                     }
                 }
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al cargar los datos de los pacientes: {ex.Message}");
+                }
 
-            treePacientes.ExpandAll();
+                treePacientes.ExpandAll();
+            }
         }
+
 
 
 
@@ -103,13 +149,12 @@ namespace DoctorAVL
             {
                 conn.Open();
 
-                // Adjusted query to handle 'cualquiera' and NULL options
                 string query = @"SELECT mensajeTratamiento FROM Tratamientos
                     WHERE (Sangre = @sangre::TipoSangre OR Sangre = 'cualquiera'::TipoSangre)
                     AND (presion = @presion::NivelPresion OR presion = 'cualquiera'::NivelPresion)
                     AND (genero = @genero::GeneroTipo OR genero = 'cualquiera'::GeneroTipo)
                     AND (paciente = @paciente OR paciente = 'cualquiera')";
-                
+
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
 
@@ -131,7 +176,7 @@ namespace DoctorAVL
                         }
                         else
                         {
-                            
+
                             listView1.Items.Add("No hay recomendaciones disponibles para esta selección.");
                         }
                     }
@@ -199,6 +244,13 @@ namespace DoctorAVL
 
         private void treePacientes_Click(object sender, EventArgs e)
         {
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            IniciarSesion iniciarSesion = new IniciarSesion();
+            this.Hide();
+            iniciarSesion.Show();
         }
     }
 

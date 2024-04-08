@@ -21,8 +21,13 @@ namespace DoctorAVL
         private string cadenaConexion = "Server=hansken.db.elephantsql.com;Port=5432;Database=ikegunyj;User Id=ikegunyj;Password=PjDjGMbve9rwF5eP4fMGm5M59yzCpExq;";
         public Recomendaciones(string sangre, string presion, string genero, string nombre)
         {
-            InitializeComponent();
-            CargarRecomendacion();
+            InitializeComponent();  
+            this.sangre = sangre;
+            this.presion = presion;
+            this.genero = genero;
+            this.nombre = nombre;
+
+            CargarRecomendacion(); 
         }
 
         private void CargarRecomendacion()
@@ -32,19 +37,17 @@ namespace DoctorAVL
                 conn.Open();
 
                 string query = @"SELECT mensajeTratamiento FROM Tratamientos
-                    WHERE (Sangre = @sangre::TipoSangre OR Sangre = 'cualquiera'::TipoSangre)
+                    WHERE (sangre = @sangre::TipoSangre OR Sangre = 'cualquiera'::TipoSangre)
                     AND (presion = @presion::NivelPresion OR presion = 'cualquiera'::NivelPresion)
-                    AND (genero = @genero::GeneroTipo OR genero = 'cualquiera'::GeneroTipo)
-                    AND (paciente = @paciente OR paciente = 'cualquiera')";
+                    AND (genero = @genero::GeneroTipo OR genero = 'cualquiera'::GeneroTipo)";
 
                 using (var cmd = new NpgsqlCommand(query, conn))
                 {
-
                     cmd.Parameters.Add(new NpgsqlParameter("sangre", NpgsqlTypes.NpgsqlDbType.Varchar) { Value = this.sangre.Trim() });
                     cmd.Parameters.Add(new NpgsqlParameter("presion", NpgsqlTypes.NpgsqlDbType.Varchar) { Value = this.presion.Trim() });
                     cmd.Parameters.Add(new NpgsqlParameter("genero", NpgsqlTypes.NpgsqlDbType.Varchar) { Value = this.genero.Trim() });
+                    cmd.Parameters.Add(new NpgsqlParameter("paciente", this.nombre ?? ""));
 
-                    cmd.Parameters.Add(new NpgsqlParameter("paciente", this.nombre));
                     using (var reader = cmd.ExecuteReader())
                     {
                         listView1.Items.Clear();
@@ -64,6 +67,11 @@ namespace DoctorAVL
                     }
                 }
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

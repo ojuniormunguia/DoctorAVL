@@ -32,11 +32,14 @@
             btnUsuarios = new Button();
             btnPacientes = new Button();
             label1 = new Label();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            button1 = new Button();
             treePacientes = new TreeView();
             tableLayoutPanel1 = new TableLayoutPanel();
             listView1 = new ListView();
             label2 = new Label();
             flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,9 +50,10 @@
             flowLayoutPanel1.Controls.Add(btnUsuarios);
             flowLayoutPanel1.Controls.Add(btnPacientes);
             flowLayoutPanel1.Controls.Add(label1);
+            flowLayoutPanel1.Controls.Add(tableLayoutPanel5);
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
+            flowLayoutPanel1.Padding = new Padding(20, 0, 0, 0);
             flowLayoutPanel1.Size = new Size(1063, 38);
             flowLayoutPanel1.TabIndex = 9;
             // 
@@ -96,11 +100,35 @@
             label1.Location = new Point(211, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 9, 0, 0);
-            label1.Size = new Size(89, 37);
+            label1.Size = new Size(89, 40);
             label1.TabIndex = 9;
             label1.Text = "Árbol";
             label1.TextAlign = ContentAlignment.TopCenter;
             label1.Click += label1_Click;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutPanel5.Controls.Add(button1, 1, 0);
+            tableLayoutPanel5.Location = new Point(306, 3);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Size = new Size(244, 34);
+            tableLayoutPanel5.TabIndex = 14;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(97, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(144, 28);
+            button1.TabIndex = 0;
+            button1.Text = "Cerrar Sesión";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // treePacientes
             // 
@@ -158,6 +186,7 @@
             Name = "ArbolView";
             Text = "ArbolView";
             flowLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -172,5 +201,7 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Label label2;
         private ListView listView1;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Button button1;
     }
 }
