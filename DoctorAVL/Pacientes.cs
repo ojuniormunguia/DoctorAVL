@@ -16,8 +16,9 @@ namespace DoctorAVL
             usuario = usuarios;
             permisos = permiso;
             InitializeComponent();
+            dataPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            LoadPacientesData(); // Call the method to load data on form load
+            LoadPacientesData(); 
             this.FormClosing += Pacientes_FormClosing;
         }
 
@@ -26,12 +27,12 @@ namespace DoctorAVL
             using (var conn = new NpgsqlConnection(cadenaConexion))
             {
                 conn.Open();
-                string query = "SELECT * FROM \"public\".\"pacientes\""; // Query to fetch data
+                string query = "SELECT * FROM \"public\".\"pacientes\""; 
                 using (var da = new NpgsqlDataAdapter(query, conn))
                 {
                     DataTable dt = new DataTable();
-                    da.Fill(dt); // Fill DataTable with data
-                    dataPacientes.DataSource = dt; // Bind DataTable to DataGridView
+                    da.Fill(dt); 
+                    dataPacientes.DataSource = dt;
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace DoctorAVL
 
         private void btnAgregarP_Click(object sender, EventArgs e)
         {
-            AgregarPaciente agregarPaciente = new AgregarPaciente(this, "", "", "", "", "");
+            AgregarPaciente agregarPaciente = new AgregarPaciente(this,0, "", "", "", "", "");
             agregarPaciente.Show();
         }
 
@@ -63,19 +64,19 @@ namespace DoctorAVL
 
         private void btnEditarP_Click(object sender, EventArgs e)
         {
-            if (dataPacientes.SelectedRows.Count > 0)
-            {
-                int selectedRowIndex = dataPacientes.SelectedRows[0].Index;
-                DataGridViewRow selectedRow = dataPacientes.Rows[selectedRowIndex];
+            int selectedRowIndex = dataPacientes.SelectedRows[0].Index;
+            DataGridViewRow selectedRow = dataPacientes.Rows[selectedRowIndex];
+            int pacienteId = Convert.ToInt32(dataPacientes.Rows[selectedRowIndex].Cells["pacienteid"].Value);
 
-                string pacienteId = selectedRow.Cells["pacienteid"].Value.ToString();
+            if (pacienteId > 0)
+            {
                 string nombre = selectedRow.Cells["nombre"].Value.ToString();
                 string genero = selectedRow.Cells["genero"].Value.ToString();
                 string tipoSangre = selectedRow.Cells["tiposangre"].Value.ToString();
                 string presionArterial = selectedRow.Cells["presionarterial"].Value.ToString();
                 string doctor = selectedRow.Cells["doctor"].Value.ToString();
 
-                AgregarPaciente agregarPaciente = new AgregarPaciente(this, nombre, tipoSangre, presionArterial, genero, doctor);
+                AgregarPaciente agregarPaciente = new AgregarPaciente(this, pacienteId ,nombre, tipoSangre, presionArterial, genero, doctor);
                 agregarPaciente.Show();
             }
             else
@@ -86,10 +87,11 @@ namespace DoctorAVL
 
         private void btnBorrarP_Click(object sender, EventArgs e)
         {
-            if (dataPacientes.SelectedRows.Count > 0)
+            int selectedRowIndex = dataPacientes.SelectedRows[0].Index;
+            int pacienteId = Convert.ToInt32(dataPacientes.Rows[selectedRowIndex].Cells["pacienteid"].Value);
+
+            if (pacienteId > 0)
             {
-                int selectedRowIndex = dataPacientes.SelectedRows[0].Index;
-                int pacienteId = Convert.ToInt32(dataPacientes.Rows[selectedRowIndex].Cells["pacienteid"].Value);
 
                 using (var conn = new NpgsqlConnection(cadenaConexion))
                 {
@@ -102,7 +104,7 @@ namespace DoctorAVL
                         if (result > 0)
                         {
                             MessageBox.Show("Paciente eliminado correctamente.");
-                            LoadPacientesData(); // Reload data to reflect the deletion
+                            LoadPacientesData();
                         }
                         else
                         {

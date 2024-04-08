@@ -34,7 +34,6 @@
             txtUsuario = new TextBox();
             label2 = new Label();
             txtContrasena = new TextBox();
-            linkPaciente = new LinkLabel();
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -101,23 +100,9 @@
             txtContrasena.Size = new Size(343, 30);
             txtContrasena.TabIndex = 5;
             // 
-            // linkPaciente
-            // 
-            linkPaciente.AutoSize = true;
-            linkPaciente.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            linkPaciente.LinkColor = Color.Black;
-            linkPaciente.Location = new Point(54, 344);
-            linkPaciente.Name = "linkPaciente";
-            linkPaciente.Size = new Size(275, 20);
-            linkPaciente.TabIndex = 6;
-            linkPaciente.TabStop = true;
-            linkPaciente.Text = "o también puede entrar como paciente";
-            linkPaciente.LinkClicked += linkLabel1_LinkClicked;
-            // 
             // panel1
             // 
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(linkPaciente);
             panel1.Controls.Add(btnIniciarSesión);
             panel1.Controls.Add(txtContrasena);
             panel1.Controls.Add(txtUsuario);
@@ -197,7 +182,6 @@
         private TextBox txtUsuario;
         private Label label2;
         private TextBox txtContrasena;
-        private LinkLabel linkPaciente;
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;

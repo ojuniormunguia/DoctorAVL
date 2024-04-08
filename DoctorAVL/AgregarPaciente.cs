@@ -19,56 +19,103 @@ namespace DoctorAVL
         private string presionEditar;
         private string generoEditar;
         private string doctorEditar;
+        private int pacienteid;
         private Pacientes pacienteReference;
-        public AgregarPaciente(Pacientes pacientes, string nombreEditar, string sangreEditar, string presionEditar, string generoEditar, string doctorEditar)
+
+
+        public AgregarPaciente(Pacientes pacientes,int pacienteid, string nombreEditar, string sangreEditar, string presionEditar, string generoEditar, string doctorEditar)
         {
             InitializeComponent();
-            MostrarDoctores();
 
+            LoadBloodTypes();  
+            MostrarDoctores();
             this.nombreEditar = nombreEditar;
             this.sangreEditar = sangreEditar;
             this.presionEditar = presionEditar;
             this.generoEditar = generoEditar;
             this.doctorEditar = doctorEditar;
+            this.pacienteid = pacienteid;
             pacienteReference = pacientes;
+
+            txtNombre.Text = nombreEditar;
+            cmbPresion.SelectedItem = presionEditar;
+            cmbGenero.SelectedItem = generoEditar;
+
+            cmbDoctores.SelectedItem = cmbDoctores.Items.Cast<ComboboxItem>().FirstOrDefault(item => item.Text == doctorEditar);
+
+            SetSelectedBloodType();  
         }
+
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string nombre = txtNombre.Text;
-            string genero = cmbGenero.SelectedItem.ToString();
-            string sangre = cmbSangre.SelectedItem.ToString();
+            string genero = (cmbGenero.SelectedItem as string) ?? "";
+            string sangre = (cmbSangre.SelectedItem as string) ?? "";
             string presion = cmbPresion.SelectedItem.ToString();
-            string doctor = (cmbDoctores.SelectedItem as ComboboxItem).Text;
-
-            using (var conn = new NpgsqlConnection(cadenaConexion))
+            string doctor = (cmbDoctores.SelectedItem as ComboboxItem)?.Text ?? "";
+            if (this.pacienteid <= 0)
             {
-                conn.Open();
-                // Insertar nuevo paciente
-                string insertPaciente = "INSERT INTO Pacientes (Nombre, Genero, TipoSangre, PresionArterial, Doctor) VALUES (@nombre, @genero, @sangre, @presion, @doctor);";
-                using (var cmd = new NpgsqlCommand(insertPaciente, conn))
+                using (var conn = new NpgsqlConnection(cadenaConexion))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@genero", genero);
-                    cmd.Parameters.AddWithValue("@sangre", sangre);
-                    cmd.Parameters.AddWithValue("@presion", presion);
-                    cmd.Parameters.AddWithValue("@doctor", doctor);
-
-                    int result = cmd.ExecuteNonQuery();
-                    pacienteReference.LoadPacientesData();
-
-                    if (result > 0)
+                    conn.Open();
+                    string insertPaciente = "INSERT INTO Pacientes (Nombre, Genero, TipoSangre, PresionArterial, Doctor) VALUES (@nombre, @genero, @sangre, @presion, @doctor);";
+                    using (var cmd = new NpgsqlCommand(insertPaciente, conn))
                     {
-                        MessageBox.Show("Paciente agregado correctamente.");
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@genero", genero);
+                        cmd.Parameters.AddWithValue("@sangre", sangre);
+                        cmd.Parameters.AddWithValue("@presion", presion);
+                        cmd.Parameters.AddWithValue("@doctor", doctor);
+
+                        int result = cmd.ExecuteNonQuery();
+                        pacienteReference.LoadPacientesData();
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Paciente agregado correctamente.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo agregar el paciente.");
+                        }
                     }
-                    else
+                }
+            }
+            else
+            {
+                using (var conn = new NpgsqlConnection(cadenaConexion))
+                {
+                    conn.Open();
+                    // Update statement to modify an existing record
+                    string updatePaciente = "UPDATE Pacientes SET Nombre = @nombre, Genero = @genero, TipoSangre = @sangre, PresionArterial = @presion, Doctor = @doctor WHERE PacienteId = @pacienteId;";
+                    using (var cmd = new NpgsqlCommand(updatePaciente, conn))
                     {
-                        MessageBox.Show("No se pudo agregar el paciente.");
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@genero", genero);
+                        cmd.Parameters.AddWithValue("@sangre", sangre);
+                        cmd.Parameters.AddWithValue("@presion", presion);
+                        cmd.Parameters.AddWithValue("@doctor", doctor);
+                        cmd.Parameters.AddWithValue("@pacienteId", this.pacienteid); // Assuming 'this.pacienteid' holds the ID of the patient to update
+
+                        int result = cmd.ExecuteNonQuery();
+                        pacienteReference.LoadPacientesData();
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Paciente actualizado correctamente.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo actualizar el paciente. Asegúrese de que el paciente existe.");
+                        }
                     }
                 }
             }
 
         }
+
 
         private void MostrarDoctores()
         {
@@ -82,10 +129,16 @@ namespace DoctorAVL
                     {
                         using (var reader = cmd.ExecuteReader())
                         {
+                            cmbDoctores.Items.Clear(); 
                             while (reader.Read())
                             {
                                 string doctorNombre = reader["nombre"].ToString();
-                                cmbDoctores.Items.Add(new ComboboxItem(doctorNombre));
+                                ComboboxItem item = new ComboboxItem(doctorNombre);
+                                cmbDoctores.Items.Add(item);
+                                if (doctorNombre == doctorEditar)
+                                {
+                                    cmbDoctores.SelectedItem = item;
+                                }
                             }
                         }
                     }
@@ -96,6 +149,21 @@ namespace DoctorAVL
                 }
             }
         }
+
+        private void LoadBloodTypes()
+        {
+            string[] bloodTypes = new string[] { "A", "B", "AB", "O" };
+            cmbSangre.Items.AddRange(bloodTypes);
+        }
+
+        private void SetSelectedBloodType()
+        {
+            cmbSangre.SelectedItem = cmbSangre.Items.Cast<string>().FirstOrDefault(item => item.Trim() == sangreEditar.Trim());
+        }
+
+
+
+
 
         public class ComboboxItem
         {
@@ -138,6 +206,11 @@ namespace DoctorAVL
             public TipoSangre Sangre { get; set; }
             public PresionArterial Presion { get; set; }
             public string Doctor { get; set; }
+        }
+
+        private void cmbSangre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

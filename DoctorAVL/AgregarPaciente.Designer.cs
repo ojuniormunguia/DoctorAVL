@@ -179,11 +179,11 @@
             // 
             cmbSangre.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbSangre.FormattingEnabled = true;
-            cmbSangre.Items.AddRange(new object[] { "A", "B", "AB", "O" });
             cmbSangre.Location = new Point(0, 23);
             cmbSangre.Name = "cmbSangre";
             cmbSangre.Size = new Size(172, 28);
             cmbSangre.TabIndex = 8;
+            cmbSangre.SelectedIndexChanged += cmbSangre_SelectedIndexChanged;
             // 
             // label4
             // 

@@ -32,9 +32,12 @@
             btnUsuarios = new Button();
             btnPacientes = new Button();
             label1 = new Label();
-            pictureBox = new PictureBox();
+            treePacientes = new TreeView();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            listView1 = new ListView();
+            label2 = new Label();
             flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -97,26 +100,65 @@
             label1.TabIndex = 9;
             label1.Text = "Árbol";
             label1.TextAlign = ContentAlignment.TopCenter;
+            label1.Click += label1_Click;
             // 
-            // pictureBox
+            // treePacientes
             // 
-            pictureBox.Location = new Point(0, 40);
-            pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(1063, 627);
-            pictureBox.TabIndex = 10;
-            pictureBox.TabStop = false;
+            treePacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            treePacientes.Location = new Point(12, 44);
+            treePacientes.Name = "treePacientes";
+            treePacientes.Size = new Size(288, 617);
+            treePacientes.TabIndex = 10;
+            treePacientes.AfterSelect += treePacientes_AfterSelect_1;
+            treePacientes.Click += treePacientes_Click;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(listView1, 0, 1);
+            tableLayoutPanel1.Controls.Add(label2, 0, 0);
+            tableLayoutPanel1.Location = new Point(306, 44);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(744, 617);
+            tableLayoutPanel1.TabIndex = 12;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(3, 63);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(738, 551);
+            listView1.TabIndex = 13;
+            listView1.TileSize = new Size(700, 100);
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Tile;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(406, 46);
+            label2.TabIndex = 12;
+            label2.Text = "Recomendaciones seleccionadas:";
             // 
             // ArbolView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1062, 673);
-            Controls.Add(pictureBox);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(treePacientes);
             Controls.Add(flowLayoutPanel1);
             Name = "ArbolView";
             Text = "ArbolView";
             flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -126,6 +168,9 @@
         private Button btnUsuarios;
         private Label label1;
         private Button btnPacientes;
-        private PictureBox pictureBox;
+        private TreeView treePacientes;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label label2;
+        private ListView listView1;
     }
 }
