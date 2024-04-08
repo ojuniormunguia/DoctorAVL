@@ -64,8 +64,8 @@ namespace DoctorAVL
                     using (var cmd = new NpgsqlCommand(insertPaciente, conn))
                     {
                         cmd.Parameters.AddWithValue("@nombre", nombre);
-                        cmd.Parameters.AddWithValue("@genero", genero);
                         cmd.Parameters.AddWithValue("@sangre", sangre);
+                        cmd.Parameters.AddWithValue("@genero", genero);
                         cmd.Parameters.AddWithValue("@presion", presion);
                         cmd.Parameters.AddWithValue("@doctor", doctor);
 

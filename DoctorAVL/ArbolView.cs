@@ -120,17 +120,18 @@ namespace DoctorAVL
                     cmd.Parameters.Add(new NpgsqlParameter("paciente", nombre));
                     using (var reader = cmd.ExecuteReader())
                     {
+                        listView1.Items.Clear();
                         if (reader.HasRows)
                         {
                             while (reader.Read())
                             {
                                 string mensajeTratamiento = reader["mensajeTratamiento"].ToString();
-                                listView1.Items.Clear();
                                 listView1.Items.Add(mensajeTratamiento);
                             }
                         }
                         else
                         {
+                            
                             listView1.Items.Add("No hay recomendaciones disponibles para esta selección.");
                         }
                     }

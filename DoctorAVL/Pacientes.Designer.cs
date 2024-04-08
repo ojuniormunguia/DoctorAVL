@@ -257,6 +257,7 @@
             btnTratamiento.TabIndex = 14;
             btnTratamiento.Text = "Ver tratamiento";
             btnTratamiento.UseVisualStyleBackColor = false;
+            btnTratamiento.Click += btnTratamiento_Click;
             // 
             // tableLayoutPanel4
             // 
